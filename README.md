@@ -126,7 +126,8 @@ sequenceDiagram
     end
 ```
 
-## Example Run (with --no-capture)
+## Example Run (with --nocapture)
+
 
 
 running 1 test
@@ -137,36 +138,39 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 
 running 3 tests
 test buildable_ix_resolves_correct_accounts_struct ... ok
-### make_rejects_wrong_escrow_pda
+test make_creates_escrow_and_funds_vault ... 
 
-<details><summary>Logs</summary>
+### make_creates_escrow_and_funds_vault
 
-
-
-```console
-=== Transaction Logs ===
-Instruction: instruction to H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o
-Program H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o invoke [1]
-Program log: Instruction: Make
-Program log: AnchorError caused by account: escrow. Error Code: ConstraintSeeds. Error Number: 2006. Error Message: A seeds constraint was violated.
-Program log: Left:
-Program log: 111fcLTw6cc4kfAF9UhCriFQVbAMbL5WGR2Fn9G5eR
-Program log: Right:
-Program log: 5ry1HA36KUutvZqZQgkbXjiUACGqQAvD5xwodFDRYdH9
-Program H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o consumed 7998 of 200000 compute units
-Program H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o failed: custom program error: 0x7d6
-Error: InstructionError(0, Custom(2006))
-Compute Units: 7998
-========================
-
-```
-</details>
 
 ```console
 === Structured Transaction Logs ===
-Instruction: instruction to H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o
+Instruction: instruction to 4iTshPQzLB9YstwVKJuHqd1UDMQpWRmE3NWeuNt7MrRt
 Transaction
-└── H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o [1] ✗ 7998cu
+└── 4iTshPQzLB9YstwVKJuHqd1UDMQpWRmE3NWeuNt7MrRt [1] ✓ 44911cu
+    ├── 11111111111111111111111111111111 [2] ✓
+    ├── ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL [2] ✓ 18017cu
+    │   ├── TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA [3] ✓ 183cu
+    │   ├── 11111111111111111111111111111111 [3] ✓
+    │   ├── TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA [3] ✓ 38cu
+    │   └── TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA [3] ✓ 235cu
+    └── TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA [2] ✓ 105cu
+Compute Units: 44911
+====================================
+
+```
+
+ok
+test make_rejects_wrong_escrow_pda ... 
+
+### make_rejects_wrong_escrow_pda
+
+
+```console
+=== Structured Transaction Logs ===
+Instruction: instruction to 4iTshPQzLB9YstwVKJuHqd1UDMQpWRmE3NWeuNt7MrRt
+Transaction
+└── 4iTshPQzLB9YstwVKJuHqd1UDMQpWRmE3NWeuNt7MrRt [1] ✗ 7998cu
     └── Error: custom program error: 0x7d6
     ├──  AnchorError caused by account: escrow
          Error Code: ConstraintSeeds
@@ -175,273 +179,138 @@ Transaction
     ├──  Left:
     ├──  111fcLTw6cc4kfAF9UhCriFQVbAMbL5WGR2Fn9G5eR
     ├──  Right:
-    └──  5ry1HA36KUutvZqZQgkbXjiUACGqQAvD5xwodFDRYdH9
+    └──  47NyS3gGWv5rRqLjNrHqaZC95tE96yAL3ZqwYDP7baMD
 Error: InstructionError(0, Custom(2006))
 Compute Units: 7998
 ====================================
 
 ```
-test make_rejects_wrong_escrow_pda ... ok
-### make_creates_escrow_and_funds_vault
 
-<details><summary>Logs</summary>
+ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.10s
 
 
+running 3 tests
+test refund_fails_before_expiry ... 
 
-```console
-=== Transaction Logs ===
-Instruction: instruction to H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o
-Program H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o invoke [1]
-Program log: Instruction: Make
-Program 11111111111111111111111111111111 invoke [2]
-Program 11111111111111111111111111111111 success
-Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL invoke [2]
-Program log: Create
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [3]
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 183 of 181846 compute units
-Program return: TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA pQAAAAAAAAA=
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success
-Program 11111111111111111111111111111111 invoke [3]
-Program 11111111111111111111111111111111 success
-Program log: Initialize the associated token account
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [3]
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 38 of 176753 compute units
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [3]
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 235 of 174289 compute units
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success
-Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL consumed 13517 of 187267 compute units
-Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL success
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 165323 compute units
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success
-Program H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o consumed 35627 of 200000 compute units
-Program H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o success
-Compute Units: 35627
-========================
+### refund_fails_before_expiry
 
-```
-</details>
 
 ```console
 === Structured Transaction Logs ===
-Instruction: instruction to H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o
+Instruction: instruction to 4iTshPQzLB9YstwVKJuHqd1UDMQpWRmE3NWeuNt7MrRt
 Transaction
-└── H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o [1] ✓ 35627cu
-    ├── 11111111111111111111111111111111 [2] ✓
-    ├── ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL [2] ✓ 13517cu
-    │   ├── TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA [3] ✓ 183cu
-    │   ├── 11111111111111111111111111111111 [3] ✓
-    │   ├── TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA [3] ✓ 38cu
-    │   └── TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA [3] ✓ 235cu
-    └── TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA [2] ✓ 105cu
-Compute Units: 35627
+└── 4iTshPQzLB9YstwVKJuHqd1UDMQpWRmE3NWeuNt7MrRt [1] ✗ 10360cu
+    └── Error: custom program error: 0x1771
+    └──  AnchorError caused by account: escrow
+         Error Code: EscrowNotExpired
+         Error Number: 6001
+         Error Message: Escrow has not expired.
+Error: InstructionError(0, Custom(6001))
+Compute Units: 10360
 ====================================
 
 ```
-test make_creates_escrow_and_funds_vault ... ok
 
-test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+ok
+test refund_rejects_wrong_maker ... 
 
-
-running 2 tests
-### refund_returns_deposit_and_closes_escrow
-
-<details><summary>Logs</summary>
-
-
-
-```console
-=== Transaction Logs ===
-Instruction: instruction to H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o
-Program H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o invoke [1]
-Program log: Instruction: Refund
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 187618 compute units
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 118 of 185783 compute units
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success
-Program H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o consumed 14913 of 200000 compute units
-Program H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o success
-Compute Units: 14913
-========================
-
-```
-</details>
-
-```console
-=== Structured Transaction Logs ===
-Instruction: instruction to H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o
-Transaction
-└── H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o [1] ✓ 14913cu
-    ├── TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA [2] ✓ 105cu
-    └── TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA [2] ✓ 118cu
-Compute Units: 14913
-====================================
-
-```
 ### refund_rejects_wrong_maker
 
-<details><summary>Logs</summary>
-
-
-
-```console
-=== Transaction Logs ===
-Instruction: instruction to H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o
-Program H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o invoke [1]
-Program log: Instruction: Refund
-Program log: AnchorError caused by account: maker_ata_a. Error Code: ConstraintTokenOwner. Error Number: 2015. Error Message: A token owner constraint was violated.
-Program log: Left:
-Program log: CwnRgrwPERFW3tWi3iHACVVueLrW4fNotnfPa7jocYMr
-Program log: Right:
-Program log: 11157t3sqMV725NVRLrVQbAu98Jjfk1uCKehJnXXQs
-Program H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o consumed 7540 of 200000 compute units
-Program H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o failed: custom program error: 0x7df
-Error: InstructionError(0, Custom(2015))
-Compute Units: 7540
-========================
-
-```
-</details>
 
 ```console
 === Structured Transaction Logs ===
-Instruction: instruction to H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o
-test refund_returns_deposit_and_closes_escrow ... ok
+Instruction: instruction to 4iTshPQzLB9YstwVKJuHqd1UDMQpWRmE3NWeuNt7MrRt
 Transaction
-└── H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o [1] ✗ 7540cu
+└── 4iTshPQzLB9YstwVKJuHqd1UDMQpWRmE3NWeuNt7MrRt [1] ✗ 7552cu
     └── Error: custom program error: 0x7df
     ├──  AnchorError caused by account: maker_ata_a
          Error Code: ConstraintTokenOwner
          Error Number: 2015
          Error Message: A token owner constraint was violated.
     ├──  Left:
-    ├──  CwnRgrwPERFW3tWi3iHACVVueLrW4fNotnfPa7jocYMr
+    ├──  CiaZxhERjVHHfj3RpmH7xdX7LQVHovqE4Fin8v9LMJpz
     ├──  Right:
     └──  11157t3sqMV725NVRLrVQbAu98Jjfk1uCKehJnXXQs
 Error: InstructionError(0, Custom(2015))
-Compute Units: 7540
+Compute Units: 7552
 ====================================
 
 ```
-test refund_rejects_wrong_maker ... ok
 
-test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+ok
+test refund_returns_deposit_and_closes_escrow ... 
 
+### refund_returns_deposit_and_closes_escrow
 
-running 2 tests
-### take_rejects_wrong_vault
-
-<details><summary>Logs</summary>
-
-
-
-```console
-=== Transaction Logs ===
-Instruction: instruction to H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o
-Program H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o invoke [1]
-Program log: Instruction: Take
-Program log: AnchorError caused by account: vault. Error Code: AccountNotInitialized. Error Number: 3012. Error Message: The program expected this account to be already initialized.
-Program H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o consumed 7038 of 200000 compute units
-Program H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o failed: custom program error: 0xbc4
-Error: InstructionError(0, Custom(3012))
-Compute Units: 7038
-========================
-
-```
-</details>
 
 ```console
 === Structured Transaction Logs ===
-Instruction: instruction to H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o
+Instruction: instruction to 4iTshPQzLB9YstwVKJuHqd1UDMQpWRmE3NWeuNt7MrRt
 Transaction
-└── H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o [1] ✗ 7038cu
-    └── Error: custom program error: 0xbc4
-    └──  AnchorError caused by account: vault
-         Error Code: AccountNotInitialized
-         Error Number: 3012
-         Error Message: The program expected this account to be already initialized.
-Error: InstructionError(0, Custom(3012))
-Compute Units: 7038
+└── 4iTshPQzLB9YstwVKJuHqd1UDMQpWRmE3NWeuNt7MrRt [1] ✓ 16605cu
+    ├── TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA [2] ✓ 105cu
+    └── TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA [2] ✓ 118cu
+Compute Units: 16605
 ====================================
 
 ```
-test take_rejects_wrong_vault ... ok
-### take_swaps_tokens_and_closes_vault
 
-<details><summary>Logs</summary>
+ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.14s
 
 
+running 3 tests
+test take_and_close_fails_after_expiry ... 
 
-```console
-=== Transaction Logs ===
-Instruction: instruction to H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o
-Program H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o invoke [1]
-Program log: Instruction: Take
-Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL invoke [2]
-Program log: Create
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [3]
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 183 of 185505 compute units
-Program return: TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA pQAAAAAAAAA=
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success
-Program 11111111111111111111111111111111 invoke [3]
-Program 11111111111111111111111111111111 success
-Program log: Initialize the associated token account
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [3]
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 38 of 180403 compute units
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [3]
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 235 of 177941 compute units
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success
-Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL consumed 13425 of 190848 compute units
-Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL success
-Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL invoke [2]
-Program log: Create
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [3]
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 183 of 165660 compute units
-Program return: TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA pQAAAAAAAAA=
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success
-Program 11111111111111111111111111111111 invoke [3]
-Program 11111111111111111111111111111111 success
-Program log: Initialize the associated token account
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [3]
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 38 of 160567 compute units
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [3]
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 235 of 158103 compute units
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success
-Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL consumed 13517 of 171081 compute units
-Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL success
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 142498 compute units
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 140462 compute units
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 118 of 138624 compute units
-Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success
-Program H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o consumed 62290 of 200000 compute units
-Program H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o success
-Compute Units: 62290
-========================
+### take_and_close_fails_after_expiry
 
-```
-</details>
 
 ```console
 === Structured Transaction Logs ===
-Instruction: instruction to H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o
+Instruction: instruction to 4iTshPQzLB9YstwVKJuHqd1UDMQpWRmE3NWeuNt7MrRt
 Transaction
-└── H1GjRKWSauAuupurDtGiY5uvhLBtUngNhvrSBs75rH9o [1] ✓ 62290cu
-    ├── ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL [2] ✓ 13425cu
+└── 4iTshPQzLB9YstwVKJuHqd1UDMQpWRmE3NWeuNt7MrRt [1] ✗ 72272cu
+    ├── Error: custom program error: 0x1770
+    └──  AnchorError caused by account: escrow
+         Error Code: EscrowExpired
+         Error Number: 6000
+         Error Message: Escrow has expired.
+    ├── ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL [2] ✓ 14916cu
     │   ├── TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA [3] ✓ 183cu
     │   ├── 11111111111111111111111111111111 [3] ✓
     │   ├── TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA [3] ✓ 38cu
     │   ├── TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA [3] ✓ 235cu
-    ├── ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL [2] ✓ 13517cu
+    └── ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL [2] ✓ 18017cu
+        ├── TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA [3] ✓ 183cu
+        ├── 11111111111111111111111111111111 [3] ✓
+        ├── TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA [3] ✓ 38cu
+        └── TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA [3] ✓ 235cu
+Error: InstructionError(0, Custom(6000))
+Compute Units: 72272
+====================================
+
+```
+
+ok
+test take_and_close_succeeds_late_in_window ... 
+
+### take_swaps_tokens_and_closes_vault
+
+
+```console
+=== Structured Transaction Logs ===
+Instruction: instruction to 4iTshPQzLB9YstwVKJuHqd1UDMQpWRmE3NWeuNt7MrRt
+Transaction
+└── 4iTshPQzLB9YstwVKJuHqd1UDMQpWRmE3NWeuNt7MrRt [1] ✓ 74472cu
+    ├── ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL [2] ✓ 14916cu
+    │   ├── TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA [3] ✓ 183cu
+    │   ├── 11111111111111111111111111111111 [3] ✓
+    │   ├── TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA [3] ✓ 38cu
+    │   ├── TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA [3] ✓ 235cu
+    ├── ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL [2] ✓ 15017cu
     │   ├── TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA [3] ✓ 183cu
     │   ├── 11111111111111111111111111111111 [3] ✓
     │   ├── TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA [3] ✓ 38cu
@@ -449,11 +318,34 @@ Transaction
     ├── TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA [2] ✓ 105cu
     ├── TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA [2] ✓ 105cu
     └── TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA [2] ✓ 118cu
-Compute Units: 62290
+Compute Units: 74472
 ====================================
 
 ```
-test take_swaps_tokens_and_closes_vault ... ok
 
-test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+ok
+test take_rejects_wrong_vault ... 
+
+### take_rejects_wrong_vault
+
+
+```console
+=== Structured Transaction Logs ===
+Instruction: instruction to 4iTshPQzLB9YstwVKJuHqd1UDMQpWRmE3NWeuNt7MrRt
+Transaction
+└── 4iTshPQzLB9YstwVKJuHqd1UDMQpWRmE3NWeuNt7MrRt [1] ✗ 7050cu
+    └── Error: custom program error: 0xbc4
+    └──  AnchorError caused by account: vault
+         Error Code: AccountNotInitialized
+         Error Number: 3012
+         Error Message: The program expected this account to be already initialized.
+Error: InstructionError(0, Custom(3012))
+Compute Units: 7050
+====================================
+
+```
+
+ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.14s
 
